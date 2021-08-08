@@ -1,7 +1,10 @@
 import joi from 'joi';
-import createError from 'http-errors';
-import model from '../database/models'
+import model from '../database/models';
 import AuthServices from '../helper/auth.services';
+import {
+  badRequestResponse,
+  serverErrorResponse,
+} from '../helper/response';
 const { passwordCompare } = AuthServices;
 
 export default class Validation {
@@ -46,27 +49,26 @@ export default class Validation {
         },
       });
       if (!user) {
-        return res.status(401).json({
-          success: false,
-          error: 'Invalid email/password combination.',
+        return badRequestResponse({
+          res,
+          message: 'Invalid email/password combination.',
         });
       }
       const passwordMatch = await passwordCompare(user.password, password);
 
       if (!passwordMatch) {
-        return res.status(401).json({
-          error: 'Incorrect email/password combination.',
-          success: false,
+        return badRequestResponse({
+          res,
+          message: 'Incorrect email/password combination.',
         });
       }
       return next();
     } catch (error) {
-      console.log('error login', error.message);
+      console.log('error', error);
 
-      return res.status(500).json({
-        message: error.message,
-        error: 'There was an error. Please try again.',
-        success: false,
+      return serverErrorResponse({
+        res,
+        message: 'something went wrong',
       });
     }
   }

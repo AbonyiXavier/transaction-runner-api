@@ -1,16 +1,13 @@
-/* eslint strict: off */
-/* eslint lines-around-directive: off */
 'use strict';
+import fs from 'fs';
+import path from 'path';
+import Sequelize from 'sequelize';
+import configSetting from '../config/config';
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-/* eslint prefer-template: off */
-/* eslint no-path-concat: off */
-// eslint-disable-next-line import/no-dynamic-require
-const config = require(__dirname + '/../config/config.js')[env];
+const config = configSetting[env];
+
 const db = {};
 
 let sequelize;

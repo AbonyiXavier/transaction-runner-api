@@ -8,7 +8,7 @@ import {
   serverErrorResponse,
 } from '../helper/response';
 
-import { fetchAccount } from '../services/account/account.service';
+import { fetchAccount,fetchTransaction, fetchTransactionById, fetchAccountById } from '../services/account/account.service';
 
 export default class AccountController {
   static async transferFund(req, res) {
@@ -182,7 +182,7 @@ export default class AccountController {
           userId: userId,
           accountId: accountId,
           reference: v4(),
-          description: ` ${req.user.payload.full_name} You credited your with the sum of ${data.amount}`,
+          description: ` ${req.user.payload.full_name} You credited your account with the sum of ${data.amount}`,
           previous_balance: Number(balance),
           current_balance: newBal,
           created_at: Date.now(),
@@ -209,6 +209,68 @@ export default class AccountController {
   static async index(req, res) {
     try {
       const { status, message, data } = await fetchAccount();
+
+      if (status) {
+        return successfulResponse({
+          res,
+          message,
+          data,
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
+      return serverErrorResponse({
+        res,
+        message: 'something went wrong',
+      });
+    }
+  }
+  
+  static async fetchAccBYId(req, res) {
+    try {
+      const { id } = req.params
+      const { status, message, data } = await fetchAccountById(id);
+
+      if (status) {
+        return successfulResponse({
+          res,
+          message,
+          data,
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
+      return serverErrorResponse({
+        res,
+        message: 'something went wrong',
+      });
+    }
+  }
+  
+  static async fetchTrxn(req, res) {
+    try {
+      const { status, message, data } = await fetchTransaction();
+
+      if (status) {
+        return successfulResponse({
+          res,
+          message,
+          data,
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
+      return serverErrorResponse({
+        res,
+        message: 'something went wrong',
+      });
+    }
+  }
+
+  static async fetchTrxnById(req, res) {
+    try {
+      const { id } = req.params
+      const { status, message, data } = await fetchTransactionById(id);
 
       if (status) {
         return successfulResponse({

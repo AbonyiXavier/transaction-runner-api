@@ -40,9 +40,9 @@ export const createUser = async (full_name, email, password) => {
     };
     data.token = token;
 
-    await model.Accounts.create(
+  const acc =  await model.Accounts.create(
       {
-        balance: 0,
+        balance: 5000,
         userId: data.id,
         account_number: shortid.generate(),
       },
@@ -56,7 +56,13 @@ export const createUser = async (full_name, email, password) => {
     return {
       status: true,
       message: 'User created successfully!',
-      data,
+      data: {
+        id: data.id,
+        full_name: data.full_name,
+        email: data.email,
+        account_number: acc.account_number,
+        token: data.token
+      }
     };
   } catch (error) {
     console.log('error', error);

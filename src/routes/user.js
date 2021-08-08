@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller';
-import verifyToken from '../middlewares/verifyToken';
 import Validation from '../validation/validation';
 const {
   validateSignupDetails,
