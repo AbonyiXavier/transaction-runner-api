@@ -2,6 +2,7 @@
 
 
 [![Build Status](https://travis-ci.com/AbonyiXavier/transaction-runner-api.svg?branch=main)](https://travis-ci.com/AbonyiXavier/transaction-runner-api)
+
 [![Coverage Status](https://coveralls.io/repos/github/AbonyiXavier/transaction-runner-api/badge.svg?branch=main)](https://coveralls.io/github/AbonyiXavier/transaction-runner-api?branch=main)
 
 
