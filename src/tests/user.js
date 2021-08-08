@@ -92,7 +92,6 @@ describe('Testing for authentication endpoints:', () => {
         expect(result.status).to.equal(200);
         expect(result.body).to.have.property('message');
     });
-
     it('It should display user account details', async() => {
       const result = await chai.request(app)
         .get('/api/v1/accounts')
