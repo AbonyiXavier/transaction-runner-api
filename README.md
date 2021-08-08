@@ -1,5 +1,11 @@
 # Transaction Runner
 
+
+[![Build Status](https://travis-ci.com/AbonyiXavier/transaction-runner-api.svg?branch=main)](https://travis-ci.com/AbonyiXavier/transaction-runner-api)
+
+[![Coverage Status](https://coveralls.io/repos/github/AbonyiXavier/transaction-runner-api/badge.svg?branch=main)](https://coveralls.io/github/AbonyiXavier/transaction-runner-api?branch=main)
+
+
 Transaction Runner allow users to create account, deposit money and transafer money to another users. It is built on top of NodeJS and Express. It is higly flexible because it provides users with opportunity to:
 
 - Sign up
@@ -30,7 +36,7 @@ You must have
 - Run 'npm run dev' to start the application
 - In a browser address bar navigate to ''
 
-# Using wallet API through a restful client
+# Using transaction runner API through a restful client
 
 - Open any restful client application initially installed
 - Select the appropriate http method. Either GET, POST,
