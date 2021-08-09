@@ -42,7 +42,7 @@ export const fetchAccountById = async (id) => {
 
 export const fetchTransaction = async () => {
   try {
-    const data = await model.transactions.findAll({});
+    const data = await model.transactions.findAll();
 
     return {
       status: true,
