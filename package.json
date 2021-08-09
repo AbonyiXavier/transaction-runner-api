@@ -11,9 +11,8 @@
     "start": "npm run build && node ./build/app.js",
     "test": "set NODE_ENV=test&&sequelize db:migrate:undo:all&&sequelize db:migrate&&nyc --require @babel/register  mocha ./src/tests/** --timeout 10000 --exit",
     "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls",
-    "migrate": "node_modules/.bin/sequelize db:migrate",
-    "migrate:undo": "node_modules/.bin/sequelize db:migrate:undo:all"
-  },
+    "migrate": "node_modules/.bin/sequelize db:migrate"
+    },
   "dependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
