@@ -15,9 +15,9 @@ Transaction Runner allow users to create account, deposit money and transafer mo
 
 # Getting Started
 
-To obtain a copy of this app download or clone the repository at this [url]()
+To obtain a copy of this app download or clone the repository at this [url](https://github.com/AbonyiXavier/transaction-runner-api)
 
-Postman collection documentation link [url]()
+Postman collection documentation link [url](https://documenter.getpostman.com/view/7775892/TzskFjDu)
 
 # Prerequisites
 
@@ -34,6 +34,7 @@ You must have
 - In the command prompt, cd to the root of the directory you extracted the app into
 - Run 'npm install' to install all dependencies
 - Run 'npm run dev' to start the application
+- Run 'npm run test' to run test on the application
 - In a browser address bar navigate to ''
 
 # Using transaction runner API through a restful client
@@ -44,34 +45,41 @@ You must have
 ### Signin
 
 - Use the POST method
-- Use this url 
+- Use this url https://trnx-runner.herokuapp.com/api/v1/login
 
 ### Signup
 
 - Use the POST method
-- Use this url 
-- As user get signup automatically the balance is Zero
+- Use this url https://trnx-runner.herokuapp.com/api/v1/signup
+- As user get signup automatically the balance is 5000
 
 
-### Deposit
+### Deposit money
 
 - Use the POST method (token is needed)
-- Use this url 
+- Use this url https://trnx-runner.herokuapp.com/api/v1/accounts/deposit
 
 
-### Send money
+### Transfer money
 
 - Use the POST method
-- Use this url here
+- Use this url https://trnx-runner.herokuapp.com/api/v1/accounts/transfer
+
 
 - Use the GET method
-- Use this url here
+
 - To get transactions (token is needed)
+- Use this url https://trnx-runner.herokuapp.com/api/v1/transactions
 
-### Get Account balance
+- To get transactions by id (token is needed)
+- Use this url https://trnx-runner.herokuapp.com/api/v1/transactions/5d7c487c-3960-42ef-91e2-2680249df28e
 
-- Use the GET method
-- Use this url here (token is needed)
+
+- To get accounts (token is needed)
+- Use this url https://trnx-runner.herokuapp.com/api/v1/accounts
+
+- To get accounts (token is needed)
+- Use this url https://trnx-runner.herokuapp.com/api/v1/accounts/106a5b2c-8bdd-4f96-b0a9-08a5a3c48dc3
 
 
 ## Built With
@@ -80,6 +88,9 @@ You must have
 - Express
 - Postgresql (database)
 - Sequelize (ORM)
+- Travis CI
+- Coveralls
+- Heroku
 
 ## Author
 
