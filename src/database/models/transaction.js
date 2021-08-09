@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Transaction = sequelize.define('Transactions', {
+  const Transaction = sequelize.define('transactions', {
     type: {
       type: DataTypes.ENUM('credit', 'debit'),
       allowNull: false,
@@ -44,12 +44,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Transaction.associate = (models) => {
-    Transaction.belongsTo(models.Users, {
+    Transaction.belongsTo(models.users, {
       as: 'user',
       foreignKey: 'userId',
       onDelete: 'cascade',
     });
-    Transaction.belongsTo(models.Accounts, {
+    Transaction.belongsTo(models.accounts, {
       as: 'account',
       foreignKey: 'accountId',
       onDelete: 'cascade',

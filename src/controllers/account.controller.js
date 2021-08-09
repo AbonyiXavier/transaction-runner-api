@@ -19,7 +19,7 @@ export default class AccountController {
       const { id: userId } = req.user.payload;
 
       // Get user balance
-      const accountDetails = await model.Accounts.findOne(
+      const accountDetails = await model.accounts.findOne(
         {
           where: { userId: req.user.payload.id },
         },
@@ -41,7 +41,7 @@ export default class AccountController {
       // subtract user amount from his wallet to what he/she is sending and update his/her account
       const newBalance = amt - parseFloat(amount);
 
-      await model.Accounts.update(
+      await model.accounts.update(
         {
           balance: newBalance,
         },
@@ -54,7 +54,7 @@ export default class AccountController {
       );
 
       // Check for user wallet he wants to send to(the receiver wallet id)
-      const account = await model.Accounts.findOne(
+      const account = await model.accounts.findOne(
         {
           where: { account_number },
         },
@@ -73,7 +73,7 @@ export default class AccountController {
       // Sum the money and update the account of the receiver
       const newBal = money + parseFloat(amount);
 
-      await model.Accounts.update(
+      await model.accounts.update(
         {
           balance: newBal,
         },
@@ -86,7 +86,7 @@ export default class AccountController {
       );
 
       // debit the sender
-      await model.Transactions.create(
+      await model.transactions.create(
         {
           type: 'debit',
           purpose: 'transfer',
@@ -104,7 +104,7 @@ export default class AccountController {
       );
 
       // credit the receiver
-      await model.Transactions.create(
+      await model.transactions.create(
         {
           type: 'credit',
           purpose: 'transfer',
@@ -142,7 +142,7 @@ export default class AccountController {
 
     try {
       const { id: userId } = req.user.payload;
-      const accountDetails = await model.Accounts.findOne(
+      const accountDetails = await model.accounts.findOne(
         {
           where: { userId: req.user.payload.id },
         },
@@ -161,7 +161,7 @@ export default class AccountController {
       const money = parseFloat(balance);
       const newBal = money + parseFloat(data.amount);
 
-      await model.Accounts.update(
+      await model.accounts.update(
         {
           balance: newBal,
         },
@@ -174,7 +174,7 @@ export default class AccountController {
       );
 
       // deposit to wowner account
-      await model.Transactions.create(
+      await model.transactions.create(
         {
           type: 'credit',
           purpose: 'deposit',

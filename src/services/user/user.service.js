@@ -8,7 +8,7 @@ export const createUser = async (full_name, email, password) => {
   const t = await model.sequelize.transaction();
 
   try {
-    const checkEmail = await model.Users.findOne(
+    const checkEmail = await model.users.findOne(
       {
         where: {
           email,
@@ -24,7 +24,7 @@ export const createUser = async (full_name, email, password) => {
         message: 'email already in use.',
       };
     }
-    const userData = await model.Users.create({
+    const userData = await model.users.create({
       full_name,
       email,
       password: bcrypt.hashSync(password, 10),
@@ -40,7 +40,7 @@ export const createUser = async (full_name, email, password) => {
     };
     data.token = token;
 
-  const acc =  await model.Accounts.create(
+  const acc =  await model.accounts.create(
       {
         balance: 5000,
         userId: data.id,
@@ -77,7 +77,7 @@ export const createUser = async (full_name, email, password) => {
 
 export const loginUser = async ( email ) => {
 try {
-  const user = await model.Users.findOne({
+  const user = await model.users.findOne({
     where: {
       email,
     },

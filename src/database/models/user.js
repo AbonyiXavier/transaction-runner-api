@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('Users', {
+  const User = sequelize.define('users', {
     full_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // User.associate = (models) => {
-  //   User.hasMany(models.Transactions, {
+  //   User.hasMany(models.transactions, {
   //     onDelete: 'cascade',
   //     hooks: true,
   //   });
-  //   User.hasOne(models.Accounts, {
+  //   User.hasOne(models.accounts, {
   //     onDelete: 'cascade',
   //     hooks: true,
   //   });

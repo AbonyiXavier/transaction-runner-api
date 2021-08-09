@@ -2,7 +2,7 @@ import model from '../../database/models';
 
 export const fetchAccount = async () => {
   try {
-    const data = await model.Accounts.findAll({});
+    const data = await model.accounts.findAll({});
 
     return {
       status: true,
@@ -20,7 +20,7 @@ export const fetchAccount = async () => {
 
 export const fetchAccountById = async (id) => {
   try {
-    const data = await model.Accounts.findOne({
+    const data = await model.accounts.findOne({
       where: {
         id: id
       }
@@ -42,7 +42,7 @@ export const fetchAccountById = async (id) => {
 
 export const fetchTransaction = async () => {
   try {
-    const data = await model.Transactions.findAll({});
+    const data = await model.transactions.findAll({});
 
     return {
       status: true,
@@ -60,7 +60,7 @@ export const fetchTransaction = async () => {
 
 export const fetchTransactionById = async (id) => {
   try {
-    const data = await model.Transactions.findOne({
+    const data = await model.transactions.findOne({
       where: {
         id: id
       }

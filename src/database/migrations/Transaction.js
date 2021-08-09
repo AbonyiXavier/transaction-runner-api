@@ -9,7 +9,7 @@ module.exports = {
     return queryInterface.sequelize
       .query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
       .then(() =>
-        queryInterface.createTable('Transactions', {
+        queryInterface.createTable('transactions', {
           id: {
             allowNull: false,
             primaryKey: true,
@@ -73,6 +73,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.dropTable('Transactions');
+    return queryInterface.dropTable('transactions');
   },
 };

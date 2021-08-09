@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Account = sequelize.define('Accounts', {
+  const Account = sequelize.define('accounts', {
     balance: {
       type: DataTypes.DECIMAL,
       allowNull: false,
@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Account.associate = (models) => {
-    Account.belongsTo(models.Users, {
+    Account.belongsTo(models.users, {
       as: 'user',
       foreignKey: 'userId',
       onDelete: 'cascade',
     });
-    Account.hasMany(models.Transactions, {
+    Account.hasMany(models.transactions, {
       as: 'account',
       foreignKey: 'accountId',
       onDelete: 'cascade',
