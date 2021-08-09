@@ -43,7 +43,7 @@ export default class Validation {
   static async validatePassword(req, res, next) {
     try {
       const { email, password } = req.body;
-      const user = await model.Users.findOne({
+      const user = await model.users.findOne({
         where: {
           email,
         },
