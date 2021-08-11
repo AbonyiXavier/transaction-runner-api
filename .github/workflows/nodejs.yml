@@ -9,8 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x]
-    container:
-      image: node:10.18-jessie
+    
     services:
       postgres:
         env:
