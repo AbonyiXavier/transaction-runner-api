@@ -13,7 +13,7 @@ const verifyToken = async (req, res, next) => {
     if (!token) {
       return unauthorizedResponse({
         res,
-       message: 'Access Denied'
+        message: 'Access Denied'
       });
     }
     const decoded = await jwt.verify(token, process.env.JWT_KEY);
@@ -23,8 +23,8 @@ const verifyToken = async (req, res, next) => {
     console.log('error', error);
     return serverErrorResponse({
       res,
-      message:'something went wrong'
-    })
+      message: 'something went wrong'
+    });
   }
 };
 export default verifyToken;

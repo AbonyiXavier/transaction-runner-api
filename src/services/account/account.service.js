@@ -22,7 +22,7 @@ export const fetchAccountById = async (id) => {
   try {
     const data = await model.accounts.findOne({
       where: {
-        id: id
+        id
       }
     });
 
@@ -62,7 +62,7 @@ export const fetchTransactionById = async (id) => {
   try {
     const data = await model.transactions.findOne({
       where: {
-        id: id
+        id
       }
     });
 

@@ -1,14 +1,13 @@
-import model from '../database/models';
 import { v4 } from 'uuid';
+import model from '../database/models';
 
 import {
   successfulResponse,
   forbiddenResponse,
-  badRequestResponse,
   serverErrorResponse,
 } from '../helper/response';
 
-import { fetchAccount,fetchTransaction, fetchTransactionById, fetchAccountById } from '../services/account/account.service';
+import { fetchAccount, fetchTransaction, fetchTransactionById, fetchAccountById } from '../services/account/account.service';
 
 export default class AccountController {
   static async transferFund(req, res) {
@@ -92,7 +91,7 @@ export default class AccountController {
           purpose: 'transfer',
           amount,
           reference: v4(),
-          userId: userId,
+          userId,
           accountId: senderId,
           description: `${req.user.payload.full_name} your account has been debited with the sum of ${amount}`,
           previous_balance: Number(balance),
@@ -110,7 +109,7 @@ export default class AccountController {
           purpose: 'transfer',
           amount,
           reference: v4(),
-          userId: userId,
+          userId,
           accountId: receiverId,
           description: `Your account was credited by ${req.user.payload.full_name} with the sum of ${amount}`,
           previous_balance: Number(bal),
@@ -179,8 +178,8 @@ export default class AccountController {
           type: 'credit',
           purpose: 'deposit',
           amount: data.amount,
-          userId: userId,
-          accountId: accountId,
+          userId,
+          accountId,
           reference: v4(),
           description: ` ${req.user.payload.full_name} You credited your account with the sum of ${data.amount}`,
           previous_balance: Number(balance),
@@ -205,7 +204,7 @@ export default class AccountController {
       });
     }
   }
-  
+
   static async index(req, res) {
     try {
       const { status, message, data } = await fetchAccount();
@@ -225,10 +224,10 @@ export default class AccountController {
       });
     }
   }
-  
+
   static async fetchAccBYId(req, res) {
     try {
-      const { id } = req.params
+      const { id } = req.params;
       const { status, message, data } = await fetchAccountById(id);
 
       if (status) {
@@ -246,7 +245,7 @@ export default class AccountController {
       });
     }
   }
-  
+
   static async fetchTrxn(req, res) {
     try {
       const { status, message, data } = await fetchTransaction();
@@ -269,7 +268,7 @@ export default class AccountController {
 
   static async fetchTrxnById(req, res) {
     try {
-      const { id } = req.params
+      const { id } = req.params;
       const { status, message, data } = await fetchTransactionById(id);
 
       if (status) {

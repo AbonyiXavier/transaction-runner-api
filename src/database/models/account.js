@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.NOW,
 
     },
-  
+
   });
 
   Account.associate = (models) => {

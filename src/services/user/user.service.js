@@ -1,6 +1,6 @@
-import model from '../../database/models';
 import bcrypt from 'bcryptjs';
 import shortid from 'shortid';
+import model from '../../database/models';
 import AuthServices from '../../helper/auth.services';
 const { generateJwt } = AuthServices;
 
@@ -28,7 +28,7 @@ export const createUser = async (full_name, email, password) => {
       full_name,
       email,
       password: bcrypt.hashSync(password, 10),
-    },{
+    }, {
       transaction: t,
     });
 
@@ -40,7 +40,7 @@ export const createUser = async (full_name, email, password) => {
     };
     data.token = token;
 
-  const acc =  await model.accounts.create(
+    const acc = await model.accounts.create(
       {
         balance: 5000,
         userId: data.id,
@@ -75,34 +75,34 @@ export const createUser = async (full_name, email, password) => {
 };
 
 
-export const loginUser = async ( email ) => {
-try {
-  const user = await model.users.findOne({
-    where: {
-      email,
-    },
-  });
-  if (!user) {
+export const loginUser = async (email) => {
+  try {
+    const user = await model.users.findOne({
+      where: {
+        email,
+      },
+    });
+    if (!user) {
+      return {
+        status: false,
+        message: 'invalid email and password',
+      };
+    }
+    const token = await generateJwt(user);
+    const data = {
+      id: user.id,
+      email: user.email,
+    };
+    data.token = token;
+    return {
+      status: true,
+      message: 'logged in!',
+      data,
+    };
+  } catch (error) {
     return {
       status: false,
-      message: 'invalid email and password',
+      message: 'Something went wrong',
     };
   }
-  const token = await generateJwt(user);
-  const data = {
-    id: user.id,
-    email: user.email,
-  };
-  data.token = token;
-  return {
-    status: true,
-    message: 'logged in!',
-    data,
-  };
-} catch (error) {
-  return {
-    status: false,
-    message: 'Something went wrong',
-  };
-}
-}
+};
